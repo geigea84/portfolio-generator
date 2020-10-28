@@ -1,5 +1,6 @@
 const profileDataArgs = process.argv.slice(2, process.argv.length);
 const [name, github] = profileDataArgs;
+const fs = require("fs");
 
 /*9.1
 const printProfileData = (profileDataArr) => {
@@ -51,5 +52,13 @@ const generatePage = (userName, githubName) => {
     `;
 };
 
-console.log(name, github);
-console.log(generatePage(name, github));
+/*9.2.5 The fs.writeFile() function definition has three arguments. The first argument
+ is the name of the file that's being created. The next argument is the data that will 
+ write onto the file, in this case the HTML template literal. The last parameter is a 
+ callback function that will be used for error handling.*/
+
+ fs.writeFile("index.html", generatePage(name, github), err => {
+     if (err) throw err;
+
+     console.log("Portfolio complete!  Check out index.html to see the output!")
+ });
