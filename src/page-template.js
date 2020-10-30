@@ -1,3 +1,16 @@
+//create the about section
+const generateAbout = aboutText => {
+    if (!aboutText) {
+        return "";
+    }
+    return `
+    <section class="my-3" id="about">
+        <h2 class="text-dark bg-primary p-2 display-inline-block">About Me</h2>
+        <p>${aboutText}</p>
+    </section> 
+    `;
+};
+
 /* 9.2.4 This function returns a string. Let's break it down further to compare 
 it to the arrow functions we created in the previous lesson. You might remember 
 that parentheses are unnecessary in arrow functions when there is one parameter. 
@@ -57,7 +70,7 @@ module.exports = templateData => {
       </div>
     </header>
     <main class="container my-5">
-
+          ${generateAbout(about)}
     </main>
     <footer class="container text-center py-3">
       <h3 class="text-dark">&copy; ${new Date().getFullYear()} by ${header.name}</h3>
