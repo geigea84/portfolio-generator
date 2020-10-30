@@ -1,9 +1,9 @@
 const inquirer = require("inquirer");
-/*
+
 const fs = require("fs");
 const generatePage = require("./src/page-template.js");
-const pageHTML = generatePage(name, github);
-*/
+//const pageHTML = generatePage(name, github);
+
 
 /*9.1
 const printProfileData = (profileDataArr) => {
@@ -187,5 +187,35 @@ const promptUser = () => {
  promptUser()
     .then(promptProject)
     .then(portfolioData => {
-        console.log(portfolioData);
+        const pageHTML = generatePage(portfolioData);
+
+        fs.writeFile("./index.html", pageHTML, err => {
+            if (err) throw new Error(err);
+
+            console.log("Page created!  Check out index.html in this directory to see it!");
+        });
     });
+
+/*9.4.3 This project, and many others you'll work on throughout your career, 
+involves taking in a lot of input from a user to provide an output. Filling 
+out the Inquirer prompts every time you need to test something new can feel 
+tedious and frustrating.
+
+We can bypass this step, however, by using mock (or dummy) data as the input. 
+We just need to copy the structure of the input data and provide sample answers. 
+Then we can use that as the input data, saving us time. Here's an sample of what 
+this mock data can look like in JavaScript:
+
+const mockData = {
+  name: 'Lernantino',
+  github: 'lernantino',
+  projects: []
+}
+To do this, we will need to disable the current function call to promptUser() 
+and its corresponding promises by commenting it out so that we keep the user 
+prompts for the final version of the app. We can replace it temporarily with 
+the expression:
+
+const pageHTML = generatePage(mockData);
+Just don't forget to switch it back once the development of the HTML template 
+has been completed.*/
